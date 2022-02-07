@@ -1,0 +1,137 @@
+<html>
+<head>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" rel="stylesheet" type="text/css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js" type="text/javascript"> </script>
+</head><body><center>
+<h1>Results map </h1>
+</center>
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+<style type="text/css">
+
+        #mynetwork {
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+        #config {
+            float: left;
+            width: 400px;
+            height: 600px;
+        }
+        
+
+        
+</style>
+<div id="mynetwork"></div>
+<div id="config"></div>
+<script type="text/javascript">  
+  
+      // initialize global variables.
+      var edges;
+      var nodes;
+      var network; 
+      var container;
+      var options, data;
+  
+      
+      // This method is responsible for drawing the graph, returns the drawn network
+      function drawGraph() {
+          var container = document.getElementById('mynetwork');
+          
+          
+  
+          // parsing and collecting nodes and edges from the python
+          nodes = new vis.DataSet([{"color": "red", "id": "questionDot", "label": "question", "shape": "dot", "title": "How much amount will be provided as reward for informants in insider trading cases"}, {"color": "blue", "id": "0", "label": "Issue and Listing of Non Convertible Redeemable Preference Shares", "shape": "dot", "title": "9A.    (1)  The  Chief  Executive  Officer,  Managing  Director  or  such  other  analogous  person  of  a listed  company,  intermediary  or  fiduciary  shall  put  in  place  adequate  and  effective  system  of internal  controls  to  ensure  compliance  with  the  requirements  given  in  these  regulations  to prevent insider trading.", "url": "./PDFS/Issue and Listing of Non Convertible Redeemable Preference Shares.pdf"}, {"color": "blue", "id": "1", "label": "Issue and Listing of Non Convertible Redeemable Preference Shares", "shape": "dot", "title": "9. (1) The  board  of  directors  of  every  listed  company  and  29[the  board  of  directors  or head(s) of the organisation of every intermediary shall ensure that the chief executive officer or managing director] shall formulate a code of conduct 30[with their approval] to regulate, monitor and  report  trading  by  its  31[designated  persons  and  immediate  relatives  of  designated  persons] towards achieving compliance with these regulations, adopting the minimum standards set out in Schedule B 32[(in case of a listed company) and Schedule C (in case of an intermediary)] to these regulations, without diluting the provisions of these regulations in any manner. would be required to formulate a code of conduct to regulate, monitor and report trading by their designated  persons,  by  adopting  the  minimum  standards  set  out  in  Schedule  B  with  respect  to trading in their own securities and in Schedule C with respect to trading in other securities.] It is intended that every company whose securities are listed on stock exchanges and every  34[intermediary] registered with SEBI is mandatorily required to formulate a code of conduct  governing  trading  by  35[designated  persons  and  their  immediate  relatives].    The standards set out in the 36[schedules] are required to be addressed by such code of conduct.", "url": "./PDFS/Issue and Listing of Non Convertible Redeemable Preference Shares.pdf"}, {"color": "blue", "id": "2", "label": "Issue and Listing of Non Convertible Redeemable Preference Shares", "shape": "dot", "title": "8. (1) The  board  of  directors  of  every  company,  whose  securities  are  listed  on  a  stock exchange, shall formulate and publish on its official website, a code of practices and procedures for  fair  disclosure  of  unpublished  price  sensitive  information  that  it  would  follow  in  order  to adhere to each of the principles set out in Schedule A to these regulations, without diluting the provisions of these regulations in any manner. This  provision  intends  to  require  every  company  whose  securities  are  listed  on stock  exchanges  to  formulate  a  stated  framework  and  policy  for  fair  disclosure  of  events  and occurrences that could impact price discovery in the market for its securities. Principles such as, equality  of  access  to  information,  publication  of  policies  such  as  those  on  dividend,  inorganic growth  pursuits,  calls  and  meetings  with  analysts,  publication  of  transcripts  of  such  calls  and meetings, and the like are set out in the schedule.", "url": "./PDFS/Issue and Listing of Non Convertible Redeemable Preference Shares.pdf"}, {"color": "blue", "id": "3", "label": "Issue and Listing of Non Convertible Redeemable Preference Shares", "shape": "dot", "title": "7M. (1) The Board shall upload on its website the following,- i.  Annual report of the Office of Informant Protection; ii.  Press release informing the public that an intimation to the Informant has been issued under Regulation 7D; iii.  Press  release  informing  the  public  that  a  Reward  has  been  paid  under  these regulations  and  the  amount  of  Monetary  Sanctions  recovered  pursuant  to  the information provided by the Informant; iv.  The Order issuing the Reward; that could identify the Informant or the information provided by the Informant.] CHAPTER \u2013 IV CODES OF FAIR DISCLOSURE AND CONDUCT Code of Fair Disclosure.", "url": "./PDFS/Issue and Listing of Non Convertible Redeemable Preference Shares.pdf"}, {"color": "blue", "id": "4", "label": "Issue and Listing of Non Convertible Redeemable Preference Shares", "shape": "dot", "title": "7L.  (1)  The  Informant  Incentive  Committee  shall  be  assisted  by  the  Office  of  Informant Protection.", "url": "./PDFS/Issue and Listing of Non Convertible Redeemable Preference Shares.pdf"}, {"color": "blue", "id": "5", "label": "Issue and Listing of Non Convertible Redeemable Preference Shares", "shape": "dot", "title": "7K. (1) Nothing in these regulations shall be deemed to provide any amnesty or immunity to an Informant for violation of securities law.", "url": "./PDFS/Issue and Listing of Non Convertible Redeemable Preference Shares.pdf"}, {"color": "blue", "id": "6", "label": "Issue and Listing of Non Convertible Redeemable Preference Shares", "shape": "dot", "title": "7J.  (1)  Any  term  in  an  agreement  (oral  or  written)  or  Code  of  Conduct,  is  void  in  so  far  as  it purports  to  preclude  any  person,  other  than  an  advocate,  from  submitting  to  the  Board information relating to the violation of the securities laws that has occurred, is occurring or has a reasonable belief that it would occur.", "url": "./PDFS/Issue and Listing of Non Convertible Redeemable Preference Shares.pdf"}, {"color": "blue", "id": "7", "label": "Issue and Listing of Non Convertible Redeemable Preference Shares", "shape": "dot", "title": "7I. (1) Every person required to have a Code of Conduct under these regulations shall ensure that such  a  Code  of  Conduct  provides  for  suitable  protection  against  any  discharge,  termination, demotion,  suspension,  threats,  harassment,  directly  or  indirectly  or  discrimination  against  any employee  who  files  a  Voluntary  Information  Disclosure  Form,  irrespective  of  whether  the information  is  considered  or  rejected  by  the  Board  or  he  or  she  is  eligible  for  a  Reward  under these regulations, by reason of: (i) (ii) filing a Voluntary Information Disclosure Form under these regulations; testifying  in,  participating  in,  or  otherwise  assisting  or  aiding  the  Board  in  any investigation, inquiry, audit, examination or proceeding instituted or about to be instituted for an alleged violation of insider trading laws or in any manner aiding the enforcement action taken by the Board; or (iii)  breaching  any  confidentiality  agreement  or  provisions  of  any  terms  and  conditions  of employment  or  engagement  solely  to  prevent  any  employee  from  cooperating  with  the Board in any manner. employment  may  become  privy  to  information  relating  to  violation  of  insider  trading  laws  and files a Voluntary Information Disclosure Form under these regulations and is a director, partner, regular or contractual employee, but does not include an advocate. (i) the Board has taken up any enforcement action in furtherance of information provided by such person; or (ii)  the  information  provided  fulfils  the  criteria  of  being  considered  as  an  Original Information under these regulations.", "url": "./PDFS/Issue and Listing of Non Convertible Redeemable Preference Shares.pdf"}, {"color": "blue", "id": "8", "label": "Issue and Listing of Non Convertible Redeemable Preference Shares", "shape": "dot", "title": "7H. (1) Any information including Original Information may, at the discretion of the Board, be made available: (a)  when  it  is  required  to  be  disclosed  in  connection  with  any  legal  proceedings  in furtherance of the Board\u2019s legal position; (b) as permitted by these regulations; or (c)  as may be otherwise required or permitted by law.", "url": "./PDFS/Issue and Listing of Non Convertible Redeemable Preference Shares.pdf"}, {"color": "blue", "id": "9", "label": "Issue and Listing of Non Convertible Redeemable Preference Shares", "shape": "dot", "title": "7G. No Reward shall be made to an Informant:-", "url": "./PDFS/Issue and Listing of Non Convertible Redeemable Preference Shares.pdf"}]);
+          edges = new vis.DataSet([{"color": "#000000", "from": "questionDot", "length": 13, "to": "0", "value": 8}, {"color": "#000000", "from": "questionDot", "length": 13, "to": "1", "value": 8}, {"color": "#000000", "from": "questionDot", "length": 13, "to": "2", "value": 8}, {"color": "#000000", "from": "questionDot", "length": 13, "to": "3", "value": 8}, {"color": "#000000", "from": "questionDot", "length": 13, "to": "4", "value": 8}, {"color": "#000000", "from": "questionDot", "length": 13, "to": "5", "value": 8}, {"color": "#000000", "from": "questionDot", "length": 13, "to": "6", "value": 8}, {"color": "#000000", "from": "questionDot", "length": 13, "to": "7", "value": 8}, {"color": "#000000", "from": "questionDot", "length": 13, "to": "8", "value": 8}, {"color": "#000000", "from": "questionDot", "length": 13, "to": "9", "value": 8}]);
+  
+          // adding nodes and edges to the graph
+          data = {nodes: nodes, edges: edges};
+  
+          var options = {
+      "configure": {
+          "enabled": true
+      },
+      "nodes": {
+         "font": {
+             "size": 100,
+             "face": "fontFace"
+         }
+     },
+      "edges": {
+          "color": {
+              "inherit": true
+          },
+          "smooth": {
+              "enabled": false,
+              "type": "continuous"
+          }
+      },
+      "interaction": {
+          "dragNodes": true,
+          "hideEdgesOnDrag": false,
+          "hideNodesOnDrag": false
+      },
+      "physics": {
+          "enabled": true,
+          "hierarchicalRepulsion": {
+              "centralGravity": 0.0,
+              "damping": 0.09,
+              "nodeDistance": 120,
+              "springConstant": 0.01,
+              "springLength": 100
+          },
+          "solver": "hierarchicalRepulsion",
+          "stabilization": {
+              "enabled": true,
+              "fit": true,
+              "iterations": 1000,
+              "onlyDynamicEdges": false,
+              "updateInterval": 50
+          }
+      }
+  };
+          
+          
+  
+          
+          // if this network requires displaying the configure window,
+          // put it in its div
+          options.configure["container"] = document.getElementById("config");
+          
+  
+          network = new vis.Network(container, data, options);
+  	 
+          
+  
+  
+          
+  
+  network.on("selectEdge", function (params) {
+         if (params.edges.length === 1) {
+             var edge = edges.get(params.edges[0]);
+             window.open(edge.url, '_tab');
+         }
+     });
+     
+ network.on("selectNode", function (params) {
+         if (params.nodes.length === 1) {
+             var node = nodes.get(params.nodes[0]);
+             window.open(node.url, '_tab');
+         }
+     });
+          return network;
+  
+      }
+  
+      drawGraph();
+  
+</script>
+</body></html>
